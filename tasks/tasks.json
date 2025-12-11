@@ -1,0 +1,88 @@
+
+{
+  "$schema": "./schema/tasks.schema.json",
+  "version": "1.0.0",
+  "project": "e-qub-app",
+  "description": "Automated workflow and agent task orchestration for the E-Qub App development lifecycle.",
+  "tasks": [
+    {
+      "id": "design-mockups",
+      "title": "Generate Figma-ready UI mockups",
+      "agent": "gemini",
+      "stage": "phase-0",
+      "input": {
+        "screens": [
+          "Group Creation",
+          "Contribution Dashboard",
+          "Payout Schedule"
+        ],
+        "style": "clean, low-tech-friendly, Amharic-first UI"
+      }
+    },
+    {
+      "id": "generate-backend-boilerplate",
+      "title": "Backend API scaffolding",
+      "agent": "qwen-code",
+      "stage": "phase-1",
+      "input": {
+        "path": "src/backend/",
+        "framework": "Node.js + Express",
+        "modules": [
+          "auth (OTP login)",
+          "group management",
+          "payment tracking",
+          "payout scheduler"
+        ]
+      }
+    },
+    {
+      "id": "review-backend-architecture",
+      "title": "Review backend code for reliability",
+      "agent": "gemini",
+      "stage": "phase-1",
+      "input": {
+        "path": "src/backend/",
+        "criteria": [
+          "security",
+          "performance",
+          "scalability"
+        ]
+      }
+    },
+    {
+      "id": "generate-mobile-ui",
+      "title": "React Native UI component generation",
+      "agent": "qwen-code",
+      "stage": "phase-2",
+      "input": {
+        "path": "src/frontend/",
+        "components": [
+          "LoginScreen",
+          "CreateGroupScreen",
+          "DashboardScreen",
+          "PayoutScheduleScreen"
+        ]
+      }
+    },
+    {
+      "id": "optimize-performance",
+      "title": "Optimize slow or heavy components",
+      "agent": "deepseek",
+      "stage": "phase-3",
+      "input": {
+        "path": "src/",
+        "focus": "performance bottlenecks"
+      }
+    },
+    {
+      "id": "prepare-release-notes",
+      "title": "Auto-generate release notes",
+      "agent": "lingma",
+      "stage": "phase-4",
+      "input": {
+        "source": "git-commits",
+        "output": "docs/release-notes/"
+      }
+    }
+  ]
+}
