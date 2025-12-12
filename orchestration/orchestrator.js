@@ -66,6 +66,19 @@ async function callAgent(agent, task) {
   const id = (agent.id || '').toLowerCase();
   const p = (agent.path || '').toLowerCase();
 
+  // If the agent specifies an explicit CLI path, prefer it
+  if (agent.cli) {
+    const cliPath = agent.cli;
+    if (id.includes('gemini') || p.includes('gemini')) {
+      return spawnCommand(cliPath, ['run-task', '--id', task.id]);
+    }
+    if (id.includes('qwen') || p.includes('qwen')) {
+      return spawnCommand(cliPath, ['exec', '--task', task.id]);
+    }
+    // generic call for other CLIs
+    return spawnCommand(cliPath, ['run', '--task', task.id]);
+  }
+
   if (id.includes('gemini') || p.includes('gemini')) {
     return spawnCommand('gemini-cli', ['run-task', '--id', task.id]);
   }
