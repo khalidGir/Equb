@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install Frontend Deps
+        working-directory: frontend
+        run: npm install
+
+      - name: Install Backend Deps
+        working-directory: backend
+        run: npm install
+
+      - name: Expo Login
+        run: npx expo login -u ${{ secrets.EXPO_USERNAME }} -p ${{ secrets.EXPO_PASSWORD }}
+
+      - name: Publish Expo App
+        working-directory: frontend
+        run: npx expo publish
+
+      - name: Deploy Firebase Backend
+        working-directory: backend
+        run: npx firebase deploy --only functions

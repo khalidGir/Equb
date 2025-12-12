@@ -1,6 +1,6 @@
 
 {
-  "$schema": "./schema/tasks.schema.json",
+  "$schema": "./schema/tasks.json",
   "version": "1.0.0",
   "project": "e-qub-app",
   "description": "Automated workflow and agent task orchestration for the E-Qub App development lifecycle.",

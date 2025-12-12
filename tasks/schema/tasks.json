@@ -1,0 +1,97 @@
+{
+  "version": "1.0.0",
+
+  "structure": {
+    "root": "./",
+    "docs": "docs/",
+    "docs_ui": "docs/ui/",
+    "docs_specs": "docs/specs/",
+    "docs_reviews": "docs/reviews/",
+    "frontend": "frontend/src/",
+    "backend": "backend/src/",
+    "agents": "agents/",
+    "tasks": "tasks/",
+    "logs": "tasks/logs/"
+  },
+
+  "scripts": {
+    "prebuild": "tasks/scripts/prebuild.sh",
+    "postbuild": "tasks/scripts/postbuild.sh",
+    "sync_docs": "tasks/scripts/sync-docs.sh",
+    "generate_files": "tasks/scripts/generate-files.sh",
+    "orchestrate": "tasks/scripts/orchestrate.sh"
+  },
+
+  "tasks": [
+    {
+      "id": "documentation.sync_ui_assets",
+      "title": "Sync UI Assets",
+      "description": "Synchronize UI assets from source docs to the UI docs folder.",
+      "entry": "scripts.sync_docs",
+      "outputs": ["docs/ui/"]
+    },
+    {
+      "id": "documentation.sync_specs",
+      "title": "Sync Specs",
+      "description": "Synchronize specification documents to the specs folder.",
+      "entry": "scripts.sync_docs",
+      "outputs": ["docs/specs/"]
+    },
+    {
+      "id": "documentation.generate_readme",
+      "title": "Generate README",
+      "description": "Generate README and documentation index files.",
+      "entry": "scripts.generate_files",
+      "outputs": ["docs/README.md"]
+    },
+    {
+      "id": "development.prepare_frontend",
+      "title": "Prepare Frontend",
+      "description": "Run prebuild steps for the frontend project.",
+      "entry": "scripts.prebuild",
+      "outputs": ["frontend/src/"]
+    },
+    {
+      "id": "development.prepare_backend",
+      "title": "Prepare Backend",
+      "description": "Run prebuild steps for the backend project.",
+      "entry": "scripts.prebuild",
+      "outputs": ["backend/src/"]
+    },
+    {
+      "id": "build.run_prebuild",
+      "title": "Run Prebuild",
+      "description": "Execute the global prebuild script as part of the build process.",
+      "entry": "scripts.prebuild",
+      "outputs": ["build/"]
+    },
+    {
+      "id": "build.run_postbuild",
+      "title": "Run Postbuild",
+      "description": "Execute postbuild steps to finalize build artifacts.",
+      "entry": "scripts.postbuild",
+      "outputs": ["build/package"]
+    },
+    {
+      "id": "orchestration.execute",
+      "title": "Execute Orchestration",
+      "description": "Run the orchestration script that coordinates tasks and agents.",
+      "entry": "scripts.orchestrate",
+      "outputs": ["tasks/logs/orchestration.log"]
+    }
+  ],
+
+  "agent_routing": {
+    "spec_to_code": "gemini",
+    "code_generation": "qwen",
+    "refinement": "lingma",
+    "inline_corrections": "copilot",
+    "review": "deepseek"
+  },
+
+  "logging": {
+    "history": "tasks/logs/history.log",
+    "errors": "tasks/logs/errors.log",
+    "orchestration_out": "tasks/logs/orchestration.log"
+  }
+}

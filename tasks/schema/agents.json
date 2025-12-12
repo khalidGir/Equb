@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+
+  "agents": {
+    "gemini": {
+      "id": "agent_gemini",
+      "name": "Gemini",
+      "path": "agents/gemini/",
+      "role": "spec_to_code",
+      "description": "Converts problem definitions, requirements, and specs into structured development instructions.",
+      "reads": ["docs/specs/", "docs/ui/"],
+      "writes": ["docs/specs/", "frontend/src/", "backend/src/"],
+      "tasks": ["documentation.generate_readme", "documentation.sync_specs"]
+    },
+
+    "qwen": {
+      "id": "agent_qwen",
+      "name": "Qwen Code",
+      "path": "agents/qwen-code/",
+      "role": "code_generation",
+      "description": "Generates production-level backend and frontend code.",
+      "reads": ["agents/gemini/output/", "docs/specs/"],
+      "writes": ["frontend/src/", "backend/src/"],
+      "tasks": ["development.prepare_frontend", "development.prepare_backend", "build.run_prebuild"]
+    },
+
+    "lingma": {
+      "id": "agent_lingma",
+      "name": "Lingma",
+      "path": "agents/lingma/",
+      "role": "refinement",
+      "description": "Refactors code, organizes architecture, checks types, and cleans unused logic.",
+      "reads": ["frontend/src/", "backend/src/"],
+      "writes": ["frontend/src/", "backend/src/", "docs/reviews/"],
+      "tasks": ["development.prepare_frontend", "development.prepare_backend", "build.run_postbuild"]
+    },
+
+    "copilot": {
+      "id": "agent_copilot",
+      "name": "Copilot",
+      "path": "agents/copilot/",
+      "role": "inline_corrections",
+      "description": "Provides real-time inline suggestions and micro-fixes inside VS Code.",
+      "reads": ["frontend/src/", "backend/src/"],
+      "writes": ["frontend/src/", "backend/src/"],
+      "tasks": ["development.prepare_frontend", "development.prepare_backend"]
+    },
+
+    "deepseek": {
+      "id": "agent_deepseek",
+      "name": "Deepseek",
+      "path": "docs/reviews/deepseek/",
+      "role": "review",
+      "description": "Performs deep verification of specs, architecture, and decisions.",
+      "reads": ["docs/specs/", "docs/ui/"],
+      "writes": ["docs/reviews/deepseek/"],
+      "tasks": ["documentation.sync_ui_assets", "orchestration.execute"]
+    }
+  }
+}

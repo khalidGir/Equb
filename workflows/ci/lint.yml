@@ -1,11 +1,29 @@
 name: Lint
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Lint placeholder
-        run: echo "Linting..."
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install deps
+        working-directory: frontend
+        run: npm install
+
+      - name: ESLint
+        working-directory: frontend
+        run: npm run lint
+
+      - name: Prettier Check
+        working-directory: frontend
+        run: npm run format:check
