@@ -1,0 +1,41 @@
+[2025-12-12T09:48:01.996Z] Validation OK
+[2025-12-12T09:48:02.030Z] Running 8 tasks in sequence.
+[2025-12-12T09:48:02.033Z] Running task 'documentation.sync_ui_assets' with agent 'Deepseek'
+[2025-12-12T09:48:02.034Z] Task plan: 'documentation.sync_ui_assets' -> Agent 'Deepseek'
+[2025-12-12T09:48:02.035Z] Calling DeepSeek web API placeholder for documentation.sync_ui_assets
+[2025-12-12T09:48:02.651Z] Task 'documentation.sync_ui_assets' finished (code=0)
+[2025-12-12T09:48:02.654Z] Running task 'documentation.sync_specs' with agent 'Gemini'
+[2025-12-12T09:48:02.655Z] Task plan: 'documentation.sync_specs' -> Agent 'Gemini'
+[2025-12-12T09:48:02.655Z] Spawning: gemini-cli run-task --id documentation.sync_specs
+[2025-12-12T09:48:02.663Z] Command error: spawn gemini-cli ENOENT (simulating success)
+[2025-12-12T09:48:02.664Z] Task 'documentation.sync_specs' finished (code=0)
+[2025-12-12T09:48:02.670Z] Running task 'documentation.generate_readme' with agent 'Gemini'
+[2025-12-12T09:48:02.670Z] Task plan: 'documentation.generate_readme' -> Agent 'Gemini'
+[2025-12-12T09:48:02.671Z] Spawning: gemini-cli run-task --id documentation.generate_readme
+[2025-12-12T09:48:02.677Z] Command error: spawn gemini-cli ENOENT (simulating success)
+[2025-12-12T09:48:02.678Z] Task 'documentation.generate_readme' finished (code=0)
+[2025-12-12T09:48:02.681Z] Running task 'development.prepare_frontend' with agent 'Qwen Code'
+[2025-12-12T09:48:02.682Z] Task plan: 'development.prepare_frontend' -> Agent 'Qwen Code'
+[2025-12-12T09:48:02.683Z] Spawning: qwen-cli exec --task development.prepare_frontend
+[2025-12-12T09:48:02.686Z] Command error: spawn qwen-cli ENOENT (simulating success)
+[2025-12-12T09:48:02.687Z] Task 'development.prepare_frontend' finished (code=0)
+[2025-12-12T09:48:02.690Z] Running task 'development.prepare_backend' with agent 'Qwen Code'
+[2025-12-12T09:48:02.691Z] Task plan: 'development.prepare_backend' -> Agent 'Qwen Code'
+[2025-12-12T09:48:02.692Z] Spawning: qwen-cli exec --task development.prepare_backend
+[2025-12-12T09:48:02.695Z] Command error: spawn qwen-cli ENOENT (simulating success)
+[2025-12-12T09:48:02.695Z] Task 'development.prepare_backend' finished (code=0)
+[2025-12-12T09:48:02.700Z] Running task 'build.run_prebuild' with agent 'Qwen Code'
+[2025-12-12T09:48:02.702Z] Task plan: 'build.run_prebuild' -> Agent 'Qwen Code'
+[2025-12-12T09:48:02.703Z] Spawning: qwen-cli exec --task build.run_prebuild
+[2025-12-12T09:48:02.707Z] Command error: spawn qwen-cli ENOENT (simulating success)
+[2025-12-12T09:48:02.708Z] Task 'build.run_prebuild' finished (code=0)
+[2025-12-12T09:48:02.711Z] Running task 'build.run_postbuild' with agent 'Lingma'
+[2025-12-12T09:48:02.712Z] Task plan: 'build.run_postbuild' -> Agent 'Lingma'
+[2025-12-12T09:48:02.713Z] Spawning: lingma-cli run --task build.run_postbuild
+[2025-12-12T09:48:02.718Z] Command error: spawn lingma-cli ENOENT (simulating success)
+[2025-12-12T09:48:02.721Z] Task 'build.run_postbuild' finished (code=0)
+[2025-12-12T09:48:02.726Z] Running task 'orchestration.execute' with agent 'Deepseek'
+[2025-12-12T09:48:02.727Z] Task plan: 'orchestration.execute' -> Agent 'Deepseek'
+[2025-12-12T09:48:02.728Z] Calling DeepSeek web API placeholder for orchestration.execute
+[2025-12-12T09:48:03.335Z] Task 'orchestration.execute' finished (code=0)
+[2025-12-12T09:48:03.337Z] runAllTasks completed
